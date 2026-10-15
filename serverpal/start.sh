@@ -1,20 +1,21 @@
-#!/usr/bin/bash
-if [ ! "$#" -eq 1 ] 
-then
-	echo "Usage: start.sh [start | stop]"  
-	exit 1
-fi
+ if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
+            pm2 restart "$APP_NAME" --update-env
+        else
+            pm2 start index.js --name "$APP_NAME"
+        fi
+        ;;
 
-# Run NPM install before starting services 
-npm install
+    stop)
+        if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
+            pm2 stop "$APP_NAME"
+        else
+            echo "Error: PM2 process '$APP_NAME' was not found."
+            exit 1
+        fi
+        ;;
 
-[ "$1" = "start" ] \
-	&& export PGUSER="postgres" \
-	&& export PGHOST="localhost" \
-	&& export PGDATABASE="grocerypal" \
-	&& export PGPASSWORD="vDPFM4LVbz7MCxYD" \
-	&& export PGPORT="5432" \
-	&& npx tsc \
-	&& pm2 start "./index.js" > log.txt 
-[ "$1" = "stop" ] && pm2 stop "index.js"
-
+    *)
+        show_usage
+        exit 2
+        ;;
+esac
