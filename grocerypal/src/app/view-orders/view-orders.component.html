@@ -1,0 +1,60 @@
+<mat-spinner *ngIf="orders.length === 0"></mat-spinner>
+
+<table *ngIf="orders.length > 0" mat-table [dataSource]="orders" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="NO">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let i = index"> {{i + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Order ID">
+        <th mat-header-cell *matHeaderCellDef> Order ID </th>
+        <td mat-cell *matCellDef="let order"> {{order.orderid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="User ID">
+        <th mat-header-cell *matHeaderCellDef> User ID </th>
+        <td mat-cell *matCellDef="let order"> {{order.userid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Date">
+        <th mat-header-cell *matHeaderCellDef> Date Created </th>
+        <td mat-cell *matCellDef="let order"> {{ order.date }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef> Total Cost </th>
+        <td mat-cell *matCellDef="let order"> ${{order.totalprice}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Method">
+        <th mat-header-cell *matHeaderCellDef> Order Method </th>
+        <td mat-cell *matCellDef="let order"> {{order.delivery_type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Time">
+        <th mat-header-cell *matHeaderCellDef> Order Time </th>
+        <td mat-cell *matCellDef="let order"> {{order.delivery_time}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Location">
+        <th mat-header-cell *matHeaderCellDef> Delivery Location </th>
+        <td mat-cell *matCellDef="let order"> {{order.delivery_location}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let order"> {{order.status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let order">
+            <button mat-raised-button color="primary" routerLink="/order-detail/{{ order.orderid }}">Details</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>

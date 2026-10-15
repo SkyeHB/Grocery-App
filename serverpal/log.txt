@@ -1,0 +1,9 @@
+[PM2] Spawning PM2 daemon with pm2_home=/home/george/.pm2
+[PM2] PM2 Successfully daemonized
+[PM2] Starting /home/george/Group_23/serverpal/index.js in fork_mode (1 instance)
+[PM2] Done.
+┌─────┬──────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id  │ name     │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├─────┼──────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0   │ index    │ default     │ 1.0.0   │ fork    │ 3520     │ 0s     │ 0    │ online    │ 0%       │ 37.4mb   │ george   │ disabled │
+└─────┴──────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘

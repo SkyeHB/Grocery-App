@@ -1,0 +1,29 @@
+.productcard {
+    width: 100%;
+}
+
+.card-container {
+    display: flex;
+    justify-content: left;
+}
+
+img {
+    padding: 1em;
+    margin: 0;
+    max-width: 272px;
+}
+
+#details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.space-right {
+    margin-right: 1em;
+}

@@ -1,0 +1,27 @@
+.section {
+    display: flex;
+}
+
+.day-box {
+    border: 1px solid rgb(167, 213, 242);
+    text-align: center;
+    min-width: 6em;
+    font-size: larger;
+    margin-left: -1px;
+    font-family: monospace, sans-serif;
+}
+
+.day-box p {
+    margin: 6px 0;
+}
+
+.day-box:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color: rgb(167, 213, 242);
+}
+
+.day-box:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}

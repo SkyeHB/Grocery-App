@@ -1,0 +1,11 @@
+div {
+    padding-top: 100px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+img {
+    opacity: 0.1;
+    margin-bottom: -80px;
+}

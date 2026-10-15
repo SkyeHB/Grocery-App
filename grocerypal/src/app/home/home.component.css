@@ -1,0 +1,21 @@
+.contents {
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+}
+
+#carousel {
+    width: 1200px;
+}
+
+#product-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    margin-right: 1em;
+    margin-bottom: 1em;
+    min-width: 20%;
+    background-color: rgb(245, 245, 245);
+}

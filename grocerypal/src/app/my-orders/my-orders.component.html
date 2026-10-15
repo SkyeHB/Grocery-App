@@ -1,0 +1,38 @@
+
+<div>
+    
+<div  style="display:inline" *ngFor="let id of pageElements[page]">
+    <button 
+    (click)="onOrderDetailRequest(id.orderid)" 
+    style="margin:2%;" 
+    mat-raised-button>Order ID: {{id.orderid}}</button> 
+    
+</div>
+
+<div>
+    <mat-card  *ngFor="let p of currentOrder.orders">
+        <mat-card-content>
+            Name: {{p.name}}
+            <mat-divider></mat-divider>
+            Quantity: {{p.quantity}}
+            <mat-divider></mat-divider>
+            Product cost: {{p.product_cost}}
+          </mat-card-content>
+      </mat-card>
+</div>
+
+</div>
+
+<div style="text-align:center; margin-top:5%">
+<button (click)="onPrevPage()" mat-raised-button color="primary" type="submit">
+    <span style="margin:2%;">Previous</span>
+</button>
+
+<span> {{page+1}}/{{totalPages}} </span>  
+
+<button (click)="onNextPage()" mat-raised-button color="primary" type="submit">
+    <!-- <mat-icon>login</mat-icon> -->
+    <span style="margin:2%;">Next</span>
+</button>
+</div>
+

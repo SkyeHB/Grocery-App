@@ -1,0 +1,27 @@
+table {
+    min-width: 100%;
+}
+
+.mat-cell,
+.mat-header-cell {
+    padding: 20px;
+}
+
+.buttonLabel {
+    width: 100%;
+    font-size: large;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+#addProductButton {
+    padding-right: 22px;
+}
+/* .mat-slide-toggle {
+    margin: 8px 0;
+    display: block;
+  } */

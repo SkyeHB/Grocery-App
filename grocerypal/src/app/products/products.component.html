@@ -1,0 +1,128 @@
+<h2>Products</h2>
+
+<!--Search bar-->
+<div id="search-bar">
+  <mat-form-field appearance="fill">
+    <mat-label>Search products</mat-label>
+    <input matInput type="text" [(ngModel)]="searchText">
+  </mat-form-field>
+</div>
+
+<!--loading spinner-->
+<mat-spinner *ngIf="products.length === 0"></mat-spinner>
+
+<div id="contents" *ngIf="products.length > 0">
+  <!--product list-->
+  <div id="product-list">
+    <div *ngFor="let product of products">
+      <mat-card *ngIf="product.name.toLowerCase().includes(searchText.toLowerCase().toString())" class="product-card">
+
+        <mat-card-header>
+          <mat-card-title>{{product.name}}</mat-card-title>
+          <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <img mat-card-image src="{{getImage(product.filename)}}" alt="Photo of {{product.name}}"
+          routerLink="/product_detail/{{product.id}}" style="cursor: pointer;">
+
+        <mat-card-content>
+          <p>{{product.description}}</p>
+          <!--product is not on sale-->
+          <strong *ngIf="!product.isOnSale()">{{toPrice(product.price)}}</strong>
+          <!--product is on sale-->
+          <strong *ngIf="product.isOnSale()">
+            <del>{{toPrice(product.price)}}</del>
+            <span style="color:rgb(10, 150, 20)">
+              {{toPrice(product.getCalculatedPrice())}} - {{product.getDiscountText()}}
+            </span>
+          </strong>
+        </mat-card-content>
+
+        <mat-card-actions class="separated-buttons">
+
+          <button mat-raised-button color="primary" (click)="addToCart(product.id)">
+            Add to cart
+          </button>
+
+          <button mat-raised-button color="accent" routerLink="/product_detail/{{ product.id }}">
+            View details
+          </button>
+
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <!--shopping cart-->
+  <div id="shopping-cart">
+    <h1 style="text-align: center; margin-bottom: 0px;">Shopping Cart</h1>
+    <hr>
+    <div style="min-height: 300px;">
+
+      <p *ngIf="!loggedInUserId" style="text-align: center; padding-top:50px;">
+        Log in to add to cart
+      </p>
+
+      <p *ngIf="loggedInUserId && loadingCart" style="text-align: center; padding-top:50px;">
+        Loading cart...
+      </p>
+
+      <p *ngIf="loggedInUserId && !loadingCart && cart.length == 0" style="text-align: center; padding-top:50px;">
+        Your cart is empty
+      </p>
+
+      <div *ngFor=" let cartItem of cart" style="display: flex; justify-content: space-between;">
+
+        <div style="display: flex; justify-content: left;">
+
+          <mat-icon style="margin-top: 5px; cursor: pointer;" (click)="deleteCartItem(cartItem.productid)">
+            close
+          </mat-icon>
+
+          <h2 style="color: rgb(60, 60, 60);">
+
+            {{ cartItem.name }}
+            <span style="color: rgb(60, 60, 60); font-weight: normal; font-size: 0.75em;">
+              ({{ toPrice(cartItem.getCalculatedPrice()) }} ea.)
+            </span>
+
+          </h2>
+
+        </div>
+
+        <div style="display: flex; justify-content: right;">
+
+          <mat-icon style="margin-top: 5px; cursor: pointer;" (click)="updateCartItemQuantity(cartItem.productid, -1)">
+            remove
+          </mat-icon>
+
+          <h2 style="color: rgb(60, 60, 60); background-color: white; padding: 0 10px; border: 1px solid black;">
+            {{ cartItem.quantity }}
+          </h2>
+
+          <mat-icon style="margin-top: 5px; cursor: pointer;" (click)="updateCartItemQuantity(cartItem.productid, 1)">
+            add
+          </mat-icon>
+
+        </div>
+      </div>
+    </div>
+    <hr>
+
+    <h2>
+      Total: ${{ getTotal() }}
+    </h2>
+
+    <div class="separated-buttons" *ngIf="loggedInUserId">
+
+      <button mat-stroked-button color="primary" (click)="emptyCart()">
+        Empty cart
+      </button>
+
+      <button mat-raised-button color="primary" routerLink="/checkout">
+        Checkout
+      </button>
+
+    </div>
+  </div>
+</div>

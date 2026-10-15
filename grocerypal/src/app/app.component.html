@@ -1,0 +1,94 @@
+<!--Navbar-->
+<mat-toolbar class="toolbar" color="primary" role="banner">
+    
+    <!--logo including store title-->
+    <img 
+        height="60" 
+        alt="Grocery Pal Logo" 
+        [src]=logoSrc />
+    
+    <!--page links-->
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/home'">
+        Home
+    </span>
+    
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/products'">
+        Products
+    </span>
+    
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/about'">
+        About
+    </span>
+    
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/users'"
+        *ngIf="loggedInUser && loggedInUser.userrole == 'admin'">
+        Users
+    </span>
+    
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/inventory'"
+        *ngIf="loggedInUser && loggedInUser.userrole == 'admin'">
+        Inventory
+    </span>
+    
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/orders'"
+        *ngIf="loggedInUser && loggedInUser.userrole == 'admin'">
+        Orders
+    </span>
+
+    <span 
+        class="nav-item nav-spaced" 
+        [routerLink]="'/my-orders'"
+        *ngIf="loggedInUser">
+        My Orders
+    </span>
+
+    <!--spacer-->
+    <div class="spacer"></div>
+
+    <span *ngIf="loggedInUser && loggedInUser.userrole == 'admin'"> 
+        admin
+    </span>
+    
+    <!--user-->
+    <mat-icon>person</mat-icon>
+    
+    <!--shows if not logged in-->
+    <span 
+        *ngIf="!loggedInUser" 
+        [routerLink]="'/login'" 
+        class="nav-item"> 
+        Login 
+    </span>
+    
+    <!--shows if logged in-->
+    <span 
+        *ngIf="loggedInUser"> 
+            {{ loggedInUser.userfname }} {{ loggedInUser.userlname }} -&nbsp;
+        </span>
+    
+    <span 
+        *ngIf="loggedInUser" 
+        (click)="logout()" 
+        class="nav-item"> 
+        logout 
+    </span>
+
+</mat-toolbar>
+
+<div class="content" role="main">
+
+    <!--this router-outlet is what controls which page is displayed-->
+    <router-outlet></router-outlet>
+</div>

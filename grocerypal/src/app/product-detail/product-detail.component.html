@@ -1,0 +1,52 @@
+<mat-spinner *ngIf="!product"></mat-spinner>
+<mat-card *ngIf="product" class="productcard">
+
+  <mat-card-content class="card-container">
+
+    <img mat-card-image src="{{getImage(product.filename)}}" alt="Photo of {{product.name}}">
+
+    <div id="details">
+
+      <div>
+        <mat-card-title>
+          {{ product.name}}
+        </mat-card-title>
+
+        <mat-card-subtitle>
+          {{product.category}}
+        </mat-card-subtitle>
+
+        <!--product is not on sale-->
+        <strong *ngIf="!product.isOnSale()">{{toPrice(product.price)}}</strong>
+        <!--product is on sale-->
+        <strong *ngIf="product.isOnSale()">
+          <del>{{toPrice(product.price)}}</del>
+          <span style="color:rgb(10, 150, 20)">
+            {{toPrice(product.getCalculatedPrice())}} - {{product.getDiscountText()}}
+          </span>
+        </strong>
+
+        <p style="margin-top: 1em;">{{product.description}}</p>
+      </div>
+
+      <div id="buttons">
+
+        <button mat-raised-button color="accent" class="space-right" routerLink="/products">
+          Go back
+        </button>
+
+        <button mat-raised-button color="primary" id="addToCartButton" class="space-right">
+          Add to cart
+        </button>
+
+        <button *ngIf="isAdmin()" mat-raised-button color="warn" (click)="onEdit()">
+          Edit
+        </button>
+
+      </div>
+
+    </div>
+
+  </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,69 @@
+<!--Carousel-->
+<div id="carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="6000">
+            <img src="../../assets/images/carousel1.jpg" height="600" width="1200" class="d-block w-100"
+                alt="Welcome to Grocery Pal!">
+        </div>
+        <div class="carousel-item" data-bs-interval="6000">
+            <img src="../../assets/images/carousel2.jpg" height="600" width="1200" class="d-block w-100"
+                alt="We sell it fresh. You do the rest.">
+        </div>
+        <div class="carousel-item" data-bs-interval="6000">
+            <img src="../../assets/images/carousel3.jpg" height="600" width="1200" class="d-block w-100"
+                alt="You name it, we got it!">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<hr>
+
+<!--Top Sales-->
+<h2>Top Sales</h2>
+<div class="contents" *ngIf="productsOnSale.length == 0" style="padding-top: 50px; padding-bottom: 50px;">
+    There are no current sales. Check back soon!
+</div>
+<div class="contents" *ngIf="productsOnSale.length > 0">
+    <!--product list-->
+    <div id="product-list">
+        <div *ngFor="let product of productsOnSale">
+            <mat-card class="product-card">
+
+                <mat-card-header>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <img mat-card-image src="{{getImage(product.filename)}}" alt="Photo of {{product.name}}"
+                    routerLink="/product_detail/{{product.id}}" style="cursor: pointer;">
+
+                <mat-card-content>
+                    <p>{{product.description}}</p>
+                    <!--product is not on sale-->
+                    <strong *ngIf="!product.isOnSale()">{{toPrice(product.price)}}</strong>
+                    <!--product is on sale-->
+                    <strong *ngIf="product.isOnSale()">
+                        <del>{{toPrice(product.price)}}</del>
+                        <span style="color:rgb(10, 150, 20)">
+                            {{toPrice(product.getCalculatedPrice())}} - {{product.getDiscountText()}}
+                        </span>
+                    </strong>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<hr>

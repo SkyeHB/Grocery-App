@@ -1,0 +1,33 @@
+<div class="section">
+    <div>
+        <h2>About Us</h2>
+        <p>GroceryPal offers a large selection of grocery products.</p>
+        <p>"Spectacular Quality Groceries, 10/10" - IGN</p>
+
+        <h2>Location</h2>
+        <p>1234 Grocer's Avenue, A1B2C3</p>
+        <p>Toronto, ON, Canada</p>
+
+        <h2>Contact Us</h2>
+        <p>416-555-5555</p>
+        <p>info@grocerypal.ca</p>
+    </div>
+    <img 
+        style="padding-left:40px;" 
+        src="../../assets/images/location-map.jpg" 
+        alt="map">
+</div>
+
+<br>
+<hr>
+<br>
+
+<h2>Store Hours</h2>
+<div class="section">
+    <div *ngFor="let date of dates" class="day-box">
+        <p>{{ date.weekDay }}</p>
+        <p>{{ date.month }} {{ date.dayNumber }}</p>
+        <p>{{ date.openTime }}</p>
+        <p>{{ date.closeTime }}</p>
+    </div>
+</div>

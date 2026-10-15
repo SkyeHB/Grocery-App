@@ -1,0 +1,70 @@
+<mat-card>
+    <mat-card-content>
+        <form class="form">
+            <h2>Log in</h2>
+
+            <!--email field-->
+            <mat-form-field appearance="fill">
+                
+                <mat-label>
+                    Enter your email
+                </mat-label>
+                
+                <input 
+                    matInput 
+                    name="email" 
+                    placeholder="someone@example.com" 
+                    required [(ngModel)]="user.useremail">
+            </mat-form-field>
+
+            <!--password field-->
+            <mat-form-field appearance="fill">
+                
+                <mat-label>
+                    Enter your password
+                </mat-label>
+
+                <input 
+                    matInput 
+                    name="password" 
+                    [type]="hide ? 'password' : 'text'" 
+                    required
+                    [(ngModel)]="user.userpassword">
+                
+                <button 
+                    mat-icon-button 
+                    matSuffix (click)="hide = !hide" 
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+            </mat-form-field>
+
+            <!--error with form-->
+            <span *ngIf="isFormError" 
+                class="color-accent" 
+                style="margin-bottom: 16px;">
+
+                {{ errorMessage }}
+            
+            </span>
+
+            <!--submit button-->
+            <button mat-raised-button color="primary" (click)="onSubmit()">
+                <mat-icon>login</mat-icon>
+                <span>login</span>
+            </button>
+            <br>
+
+            <!--other options-->
+            <span class="color-primary">Don't have an account?
+                <span class="form-link" [routerLink]="'/signup'">
+                    Sign up here!
+                </span>
+            </span>
+        </form>
+    </mat-card-content>
+</mat-card>

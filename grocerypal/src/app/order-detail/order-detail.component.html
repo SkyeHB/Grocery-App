@@ -1,0 +1,49 @@
+<mat-spinner *ngIf="order == null"></mat-spinner>
+
+<div *ngIf="order != null">
+    <div class="grid">
+        <h1 style="margin: 0">Order ID: {{order.orderid}}</h1>
+        <button mat-raised-button color="accent" routerLink="/orders">Back to orders</button>
+    </div>
+    <hr>
+    <div class="grid">
+        <div>
+            <h2><span class="not-bold">Date created: </span>{{order.date}}</h2>
+            <h2><span class="not-bold">User ID: </span>{{order.userid}}</h2>
+            <h2><span class="not-bold">Total: </span>${{order.totalprice}}</h2>
+            <h2><span class="not-bold">Order method: </span>{{order.delivery_type}}</h2>
+            <h2><span class="not-bold">Delivery time: </span>{{order.delivery_time}}</h2>
+            <h2 *ngIf="order.delivery_type=='delivery'">
+                <span class="not-bold">Deliver to: </span>{{order.delivery_location}}
+            </h2>
+        </div>
+        <div>
+            <h2>
+                <span class="not-bold">Order status: </span>
+                <span *ngIf="order.status == 'not started'" style="color: rgb(200, 0, 0)">{{order.status}}</span>
+                <span *ngIf="order.status == 'in progress'" style="color: rgb(220, 220, 0)">{{order.status}}</span>
+                <span *ngIf="order.status == 'serviced'" style="color: rgb(0, 200, 0)">{{order.status}}</span>
+            </h2>
+            <mat-form-field appearance="fill">
+                <mat-label>Update status</mat-label>
+                <mat-select name="status" required [(ngModel)]="updatedStatus" appearance="fill">
+                    <mat-option value="not started">not started</mat-option>
+                    <mat-option value="in progress">in progress</mat-option>
+                    <mat-option value="serviced">serviced</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+        </div>
+    </div>
+    <hr>
+    <h1>Items</h1>
+    <mat-spinner *ngIf="items.length == 0"></mat-spinner>
+    <div *ngIf="items.length > 0" id="item-list">
+        <mat-card *ngFor="let item of items" class="flex">
+            <p style="width: 8em;">ID: {{ item.productid }}</p>
+            <p style="width: 20em;">Name: {{ item.product_name }}</p>
+            <p style="width: 8em;">Quantity: {{ item.quantity }}</p>
+        </mat-card>
+    </div>
+</div>

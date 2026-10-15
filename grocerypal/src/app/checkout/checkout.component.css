@@ -1,0 +1,30 @@
+table {
+    min-width: 700px;
+    margin-bottom: 50px;
+}
+
+th,
+td,
+.big {
+    font-size: 20px;
+}
+
+hr {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.separated-buttons {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.flex {
+    display: flex;
+    justify-content: left;
+}
+
+mat-form-field {
+    margin-right: 20px;
+}

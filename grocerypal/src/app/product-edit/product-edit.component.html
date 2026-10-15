@@ -1,0 +1,66 @@
+<!--back button and its label-->
+<div class="flex">
+  <mat-label class="buttonLabel">Hit the Back button to cancel.</mat-label>
+  <button mat-raised-button color="accent" routerLink="/inventory">Back</button>
+</div>
+
+<!--form to add new product-->
+<mat-card>
+  <mat-card-content>
+    <form class="form" (ngSubmit)="onSubmit()">
+      <h2>Edit Product</h2>
+
+      <!--name field-->
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" required [(ngModel)]="product.name">
+      </mat-form-field>
+
+      <!--category field-->
+      <mat-form-field appearance="fill">
+        <mat-label>Category</mat-label>
+        <mat-select name="category" required [(ngModel)]="product.category_id">
+          <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.value }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--price field-->
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Price</mat-label>
+        <input matInput name="price" type="number" placeholder="0" min=0.01 required [(ngModel)]="product.price">
+      </mat-form-field>
+
+      <!--quantity field-->
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Quantity</mat-label>
+        <input matInput name="quantity" type="number" placeholder="1" min=1 required [(ngModel)]="product.quantity">
+      </mat-form-field>
+
+      <!--description field-->
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput name="description" [(ngModel)]="product.description" required></textarea>
+      </mat-form-field>
+
+      <!--discount field-->
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Discount</mat-label>
+        <input matInput name="discount" type="number" placeholder="1.00" min=0.01 max=1.00 step=0.01 required
+          [(ngModel)]="product.discount">
+        <mat-hint>1.00 = full price; 0.75 = 25% off</mat-hint>
+      </mat-form-field>
+
+      <!--error message-->
+      <span *ngIf="isFormError" class="color-accent" style="margin-bottom: 16px;">
+        {{ errorMessage }}
+      </span>
+
+      <!--submit button-->
+      <button mat-raised-button color="primary" type="submit">
+        Save Changes
+      </button>
+      <br>
+    </form>
+  </mat-card-content>
+</mat-card>

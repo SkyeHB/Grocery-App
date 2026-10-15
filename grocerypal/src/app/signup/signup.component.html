@@ -1,0 +1,80 @@
+<mat-card>
+    <mat-card-content>
+        <form class="form" (ngSubmit)="onSubmit()">
+            <h2>Sign up</h2>
+
+            <!--first name field-->
+            <mat-form-field appearance="fill">
+                <mat-label>First name</mat-label>
+                <input matInput 
+                    name="fname" 
+                    required 
+                    [(ngModel)]="user.userfname">
+            </mat-form-field>
+
+            <!--last name field-->
+            <mat-form-field appearance="fill">
+                <mat-label>Last name</mat-label>
+                <input matInput 
+                    name="lname" 
+                    required 
+                    [(ngModel)]="user.userlname">
+            </mat-form-field>
+
+            <!--email field-->
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput 
+                    name="email" 
+                    placeholder="someone@example.com" 
+                    required 
+                    [(ngModel)]="user.useremail">
+            </mat-form-field>
+
+            <!--password field-->
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input matInput 
+                    name="password" 
+                    [type]="hide ? 'password' : 'text'" 
+                    required
+                    [(ngModel)]="user.userpassword">
+                
+                <button mat-icon-button 
+                    matSuffix 
+                    (click)="hide = !hide" 
+                    [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    
+                    <mat-icon>
+                        {{hide ? 'visibility_off' : 'visibility'}}
+                    </mat-icon>
+                </button>
+            </mat-form-field>
+
+            <!--error with form-->
+            <span *ngIf="isFormError" 
+                class="color-accent" 
+                style="margin-bottom: 16px;">
+                {{ errorMessage }}
+            </span>
+
+            <!--submit button-->
+            <button mat-raised-button color="primary" type="submit">
+                <mat-icon>login</mat-icon>
+                <span>sign up</span>
+            </button>
+            <br>
+
+            <!--other options-->
+            <span class="color-primary">
+                Already have an account?
+                <span 
+                    class="form-link" 
+                    [routerLink]="'/login'">
+                    Log in here!
+                </span>
+            </span>
+        </form>
+    </mat-card-content>
+</mat-card>

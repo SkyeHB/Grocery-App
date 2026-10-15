@@ -1,0 +1,30 @@
+.grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+}
+
+.not-bold {
+    font-weight: 400;
+}
+
+.flex {
+    display: flex;
+}
+
+#item-list mat-card {
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 1em;
+}
+
+#item-list mat-card:hover {
+    background-color: rgb(240, 240, 240);
+}
+
+#item-list p {
+    margin: 0;
+}
+
+hr {
+    min-width: 600px;
+}
