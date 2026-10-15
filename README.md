@@ -2,15 +2,6 @@
 
 ![deployment](https://github.com/CAPSTONE-2022-2023/Group_23/actions/workflows/deploy.yml/badge.svg)
 
-### Team Info
-
-| Name | GitHub Account | Email |
-| ----------- |  ----------- | ----------- |
-| Julian Buchholz | Phos4usOxide | jbuchholz@myseneca.ca |
-| Giorgi Osadze | giorgiosadze | gosadze@myseneca.ca |
-| Shahid Nawaz | shahidnawaz2528 | snawaz12@myseneca.ca |
-| Skye Bragg | SkyeHB | sbragg@myseneca.ca |
-
 ## Project Description
 
 A website for a specific grocery store where customers can search and buy from a large selection of products and administration can complete store tasks such as inventory management, viewing transaction history, and managing delivery orders.
