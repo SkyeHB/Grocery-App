@@ -1,5 +1,13 @@
 {
-  "dependencies": {
-    "typescript": "^4.9.5"
+  "name": "grocery-app",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack grocery e-commerce application",
+  "scripts": {
+    "install:frontend": "npm --prefix grocerypal ci",
+    "install:backend": "npm --prefix serverpal ci",
+    "build:frontend": "npm --prefix grocerypal run build",
+    "build:backend": "npm --prefix serverpal run build",
+    "test:frontend": "npm --prefix grocerypal test -- --watch=false"
   }
 }
