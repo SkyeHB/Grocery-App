@@ -1,6 +1,4 @@
-## Video 
 
-[![Group 23 Deployment Demo](https://img.youtube.com/vi/-6tqZ9vBLCg/0.jpg)](https://www.youtube.com/watch?v=-6tqZ9vBLCg)
 
 ## Back-end deployment 
 1. Run the github `build` action
